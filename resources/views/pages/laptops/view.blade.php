@@ -58,7 +58,7 @@
                     </td>
                     <td>{{ $lap->estado }}</td>
                     <th>
-                        <a href="" class="badge badge-primary">
+                        <a href="{{ route('laptop.show', $lap->id) }}" class="badge badge-primary">
                             <span class="mdi mdi-eye"></span>
                         </a>
                         <a href="{{ route('laptop.edit', $lap->id) }}" class="badge badge-warning" style="background-color: #f39c12">
@@ -70,4 +70,7 @@
         </tbody>
     </table>
 </div>
+
+
 @endsection
+

@@ -15,7 +15,9 @@ class CreateBecadoTable extends Migration
     {
         Schema::create('becado', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->enum('estado', ['Activo', 'Inactivo'])->default('Activo');
         });
     }
 

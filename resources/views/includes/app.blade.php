@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/shared/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/demo_1/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('asssets/images/favicon.ico') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <style>
     .text-overflow-dynamic-container {
@@ -240,7 +241,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="pages/icons/material-icons.html">
+                    <a href="{{ route('becados') }}">
                         <span class="link-title">Becados</span>
                         <i class="mdi mdi-account link-icon"></i>
                     </a>
@@ -278,6 +279,9 @@
         </div>
         <!-- page content ends -->
     </div>
+
+    <!--ajax cdn -->
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
     <!--page body ends -->
     <script src="{{ asset('assets/vendors/js/core.js') }}"></script>
     <!-- endinject -->
@@ -289,7 +293,33 @@
     <!-- build:js -->
     <script src="../assets/js/template.js"></script>
     <script src="../assets/js/dashboard.js"></script>
+
+    
+    
     <!-- endbuild -->
+    <script>
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+        });
+
+        function saveData(){
+            var nombres = $('#nombres').val();
+            var apellidos = $('#apellidos').val();
+
+            $.ajax({
+                type: 'POST', 
+                url: '/store',
+                dataType: 'json',
+                data: {nombre:nombres},
+                success: function(result){
+                    window.console.log(result);
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>

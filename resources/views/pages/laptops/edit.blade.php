@@ -20,10 +20,7 @@
                                 <select name="fk_marca" class="form-control">
                                     <option value="0">--Seleccionar</option>                            
                                     @foreach ($marcas as $item)
-                                        <option value="{{ $item->id }}" 
-                                            {{ old('fk_marca') == $item->id ? 'selected' : 
-                                            ($laptop->fk_marca == $item->id) ? 'selected' : ''}}>{{ $item->marca }}
-                                        </option>                            
+                                        <option value="{{ $item->id}}" {{ ($item->id == $laptop->fk_marca) ? 'selected' : '' }} >{{ $item->marca }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -40,10 +37,7 @@
                                 <select name="fk_procesador" id="" class="form-control">
                                     <option value="0">--Seleccionar</option>                            
                                     @foreach ($procesadores as $item)
-                                        <option value="{{ $item->id }}" 
-                                            {{ old('fk_procesador') == $item->id ? 'selected' : 
-                                            ($laptop->fk_procesador == $item->id) ? 'selected' : ''}}>{{ $item->procesador }}
-                                        </option>                            
+                                        <option value="{{ $item->id }}" {{ ($item->id == $laptop->fk_procesador) ? 'selected' : '' }}>{{ $item->procesador }} </option>                        
                                     @endforeach
                                 </select>
                             </div>
@@ -69,10 +63,7 @@
                                 <select name="fk_ram" id="" class="form-control">
                                     <option value="0">--Seleccionar</option>
                                     @foreach ($ram as $item)
-                                        <option value="{{ $item->id }}" 
-                                            {{ old('fk_ram') == $item->id ? 'selected' : 
-                                            ($laptop->fk_ram == $item->id) ? 'selected' : ''}}>{{ $item->capacidad }}
-                                        </option>  
+                                        <option value="{{ $item->id }}" {{ ($item->id == $laptop->fk_ram) ? 'selected' : '' }}>{{ $item->capacidad }}</option>
                                     @endforeach                            
                                 </select>
                             </div>
@@ -81,8 +72,7 @@
                                 <select name="fk_hd" id="" class="form-control">
                                 <option value="0">--Seleccionar</option>
                                     @foreach ($HardDrive as $item)
-                                        <option value="{{ $item->id }}" {{ old('fk_hd') == $item->id ? 'selected' :
-                                        ($laptop->fk_hd == $item->id) ? 'selected' : '' }}>{{ $item->capacidad }}</option>
+                                        <option value="{{ $item->id }}" {{ ($item->id == $laptop->fk_hd) ? 'selected' : '' }}>{{ $item->capacidad }}</option>
                                     @endforeach      
                                 </select>       
                             </div>
@@ -110,7 +100,7 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <label for="">NOTAS:</label>
-                                <textarea class="form-control" id="inputType9" cols="12" rows="5" name="notas" placeholder="AGREGA NOTAS/DEFECTOS importantes relacionadas al computador"></textarea>
+                                <textarea class="form-control" id="inputType9" cols="12" rows="5" name="notas" placeholder="AGREGA NOTAS/DEFECTOS importantes relacionadas al computador">{{ $laptop->notas }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -118,12 +108,12 @@
                     <br>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-3">
-                                <button type="submit" class="btn btn-primary btn-rounded mr-2">
-                                    <span class="mdi mdi-check"></<span>
-                                        Registrar
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-rounded mr-2" style="background-color: #f9ca24">
+                                    <span class="mdi mdi-refresh"></<span>
+                                        Actualizar
                                     </button>
-                                <a href="{{ route('index') }}" class="btn btn-danger btn-rounded">
+                                <a href="{{ URL::previous() }}" class="btn btn-success btn-rounded">
                                     <span class="mdi mdi-cancel mr-3"></span>
                                     Cancelar
                                 </a>

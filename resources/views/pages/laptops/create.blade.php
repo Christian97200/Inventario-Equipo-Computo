@@ -107,7 +107,7 @@
                     <br>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary btn-rounded mr-2">
                                     <span class="mdi mdi-check"></<span>
                                         Registrar

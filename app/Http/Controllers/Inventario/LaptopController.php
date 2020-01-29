@@ -35,6 +35,7 @@ class LaptopController extends Controller
                                     'l.ranking as ranking',
                                     'l.estado'
                                 )
+                        ->orderBy('l.No', 'asc')
                         ->get();
 
         return view('pages.laptops.view',compact('laptops'));
@@ -51,7 +52,7 @@ class LaptopController extends Controller
 
     public function store(LaptopCreateRequest $request){
         Laptop::create([
-            'No'                    =>      1,
+            'No'                    =>      $request->No,
             'fk_marca'              =>      $request->fk_marca,
             'modelo_laptop'         =>      ($request->modelo_laptop == null) ? 'N/A':$request->modelo_laptop,
             'fk_procesador'         =>      $request->fk_procesador,
@@ -68,7 +69,17 @@ class LaptopController extends Controller
 
     public function show($id)
     {
-        
+        $laptop = DB::table('laptop as l')
+                  ->where('l.id','=',$id)
+                  ->join('marca as m', 'm.id','=', 'l.fk_marca')
+                  ->join('procesador as p', 'p.id','=', 'l.fk_procesador')
+                  ->join('hd', 'hd.id','=', 'l.fk_hd')
+                  ->join('ram', 'ram.id','=', 'l.fk_ram')
+                  ->select('l.No', 'm.marca', 'l.modelo_laptop', 'p.procesador', 'l.modelo_procesador', 'hd.capacidad as hd', 'ram.capacidad as ram', 'l.ranking', 'l.notas')
+                  ->first();
+
+        // dd($laptop);
+        return view('pages.laptops.show', compact('laptop'));
     }
 
     public function edit($id)
@@ -88,7 +99,7 @@ class LaptopController extends Controller
         DB::table('laptop')
             ->where('id', $id)
             ->update([
-                'No'                    =>          1,
+                'No'                    =>      $request->No,
                 'fk_marca'              =>      $request->fk_marca,
                 'modelo_laptop'         =>      ($request->modelo_laptop == null) ? 'N/A':$request->modelo_laptop,
                 'fk_procesador'         =>      $request->fk_procesador,
