@@ -15,20 +15,14 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('laptops' , 'Inventario\LaptopController@index')->name('laptops');
-Route::get('laptops/create' , 'Inventario\LaptopController@create')->name('laptop.create');
-Route::post('laptops/create/store' , 'Inventario\LaptopController@store')->name('laptop.store');
-Route::get('laptops/edit/{id}' , 'Inventario\LaptopController@edit')->name('laptop.edit');
-Route::put('laptops/update/{id}' , 'Inventario\LaptopController@update')->name('laptop.update');
-Route::get('laptops/show/{id}' , 'Inventario\LaptopController@show')->name('laptop.show');
-Route::get('becados', 'Inventario\BecadosController@index')->name('becados');
-Route::post('stwwwore', 'Inventario\BecadosController@store')->name('becado.store');
-
-Route::get('ajax', function(){
-    return view('ajax');
-});
-
-Route::post('store', 'AjaxController@store')->name('ajax.store');
+Route::get('/laptops' , 'Inventario\LaptopController@index')->name('laptops');
+Route::get('/laptops/create' , 'Inventario\LaptopController@create')->name('laptop.create');
+Route::post('/laptops/create/store' , 'Inventario\LaptopController@store')->name('laptop.store');
+Route::get('/laptops/edit/{id}' , 'Inventario\LaptopController@edit')->name('laptop.edit');
+Route::put('/laptops/update/{id}' , 'Inventario\LaptopController@update')->name('laptop.update');
+Route::get('/laptops/show/{id}' , 'Inventario\LaptopController@show')->name('laptop.show');
+Route::get('/becados', 'Inventario\BecadosController@index')->name('becados');
+Route::POST('/becados/store', 'Inventario\BecadosController@store')->name('becado.store');
 
 
 

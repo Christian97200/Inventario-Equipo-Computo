@@ -293,33 +293,12 @@
     <!-- build:js -->
     <script src="../assets/js/template.js"></script>
     <script src="../assets/js/dashboard.js"></script>
+    <script src="{{ asset('js/data.js') }}"></script>
 
     
     
     <!-- endbuild -->
-    <script>
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-        });
-
-        function saveData(){
-            var nombres = $('#nombres').val();
-            var apellidos = $('#apellidos').val();
-
-            $.ajax({
-                type: 'POST', 
-                url: '/store',
-                dataType: 'json',
-                data: {nombre:nombres},
-                success: function(result){
-                    window.console.log(result);
-                }
-            })
-        }
-    </script>
+    
 </body>
 
 </html>

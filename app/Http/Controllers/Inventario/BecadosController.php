@@ -36,7 +36,11 @@ class BecadosController extends Controller
      */
     public function store(Request $request)
     {
-       return $request->nombres;
+       if($request->ajax()){
+            return response()->json([
+                "message" => "ok"
+            ]);
+       }
     }
 
     /**
